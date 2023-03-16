@@ -14,7 +14,17 @@ class ListNode {
 
 
 function reverseList(head: ListNode | null): ListNode | null {
-  return null;
+  if (!head || !head.next) return head;
+  let first = head;
+  let second = head.next;
+  while (second) {
+    const temp = second.next;
+    second.next = first;
+    first = second;
+    second = temp;
+  }
+  head.next = null;
+  return first;
 }
 
 function arrayToLinkedList(arr: number[]) {
@@ -31,3 +41,7 @@ function arrayToLinkedList(arr: number[]) {
 const case1 = arrayToLinkedList([1, 2, 3, 4, 5]);
 const case2 = arrayToLinkedList([1, 2]);
 const case3 = arrayToLinkedList([]);
+
+console.log(reverseList(case1));
+console.log(reverseList(case2));
+console.log(reverseList(case3));
