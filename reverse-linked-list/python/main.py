@@ -8,8 +8,18 @@ class ListNode:
 
 
 class Solution:
-    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        raise NotImplemented
+    def reverse_list(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head or not head.next:
+            return head
+        first = head
+        second = head.next
+        while second:
+            temp = second.next
+            second.next = first
+            first = second
+            second = temp
+        head.next = None
+        return first
 
 
 def array_to_linked_list(arr: [int]):
@@ -27,4 +37,6 @@ case1 = array_to_linked_list([1, 2, 3, 4, 5])
 case2 = array_to_linked_list([1, 2])
 case3 = array_to_linked_list([])
 
-print(case1, case2, case3)
+print(Solution().reverse_list(case1))
+print(Solution().reverse_list(case2))
+print(Solution().reverse_list(case3))
